@@ -33,19 +33,28 @@ This future value was computed the following way:
 5. For each spell, export the average points obtained when the spell was available.
 
 With a little bit of math, the individual spell values are extracted:
-![](img/SpellValues.png | width=400)
-<img src="img/SpellValues.png" alt="alt text" width="400">
+<img src="img/SpellValues.png" width="350">
 
 A similar approach can be used to estimate "combo values": cards which work better or worse together than estimated from there individual spell values.
-![](img/ComboValues.png "")
+<img src="img/ComboValues.png">
+
 I was really pleased to find that the strongest combos found with this approach were the same that were mentionned in this [strategy guides](https://spicee.mattle.online/lobby/forum/topic/d52WjBx3WX3R27rzy/a-player-s-guide-to-spicee) .
 
-
-
-
+Without going into more details:
+- These score are expressed in terms of *rupees earned per spell per 22 turns* so that they can easiliy be integrated within a normal evaluation function. 
+- While I also evaluated the marginal decrease of spell value everytime a new spell is learnt, I did not use this information.
 
 # Mid-game: 
 
+A very standard beam search (width = 400) described by everybody else's Post-Mortem. While the early- and end-game additions made the little difference that pushed me to the top, the beam search alone is sufficient to rank within the top10.
+
+I have to admit I am still puzzled why my beam search worked better than all but 10 other contestants, because there is absolutely nothing fancy about it. 
+
+In no particular order:
+    - evaluation if the game is ongoing : tier0 + 2*tier1 + 3*tier2 + 4*tier3 + potionsScore
+    - evaluation if the game is finished : something very big if I win, very small if I lose
+    - potionsScore is the sum of rupeesEarned * 0.99 ^ turnPotionWasBrewed
+    
 
 # End-game: 
 

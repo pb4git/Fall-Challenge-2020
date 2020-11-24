@@ -56,20 +56,20 @@ A very standard beam search (width = 400) described by everybody else in their P
 I have to admit I am still puzzled why my beam search worked better than all but 10 other contestants, because there is absolutely nothing fancy about it. 
 
 In no particular order:
-    - evaluation if the game is ongoing : *tier0 + 2&ast;tier1 + 3&ast;tier2 + 4&ast;tier3 + potionsScore*
-    - evaluation if the game is finished : something *very big* if I win, *very small* if I lose, don't care about points
-    - potionsScore is the sum of *rupeesEarned &ast; 0.99 ^ turnPotionWasBrewed*
-    - spells learned and their castable status is *not* taken into account
-    - a 10ms search is run for the opponent:
-        - Potions are marked as unvailable in the search for my move once I believe the opponent will have taken them (+5 ELO)
-        - Small 1-rupee bonus for taking a potion before I believe the opponent will have taken it (+5 ELO)
-        - I tried to simulate his first action in the search for my move, but failed (-10 ELO). I still do not understand why that might fail...
-    - and that's it...
+- evaluation if the game is ongoing : *tier0 + 2&ast;tier1 + 3&ast;tier2 + 4&ast;tier3 + potionsScore*
+- evaluation if the game is finished : something *very big* if I win, *very small* if I lose, don't care about points
+- potionsScore is the sum of *rupeesEarned &ast; 0.99 ^ turnPotionWasBrewed*
+- spells learned and their castable status is *not* taken into account
+- a 10ms search is run for the opponent:
+ - Potions are marked as unvailable in the search for my move once I believe the opponent will have taken them (+5 ELO)
+ - Small 1-rupee bonus for taking a potion before I believe the opponent will have taken it (+5 ELO)
+ - I tried to simulate his first action in the search for my move, but failed (-10 ELO). I still do not understand why that might fail...
+ - and that's it...
         
 Surprises:
-    - Everybody talking about performance being important. On the contrary, I found that above a certain threshold (approx. 30k simulations), there was no benefit to have a faster code. There is exactly 0 ELO difference between my code and itself capped at 50% simulation time.
-    - Everybody talking about fine-tuned evaluation functions
-    - Larger beam width (400 to 600) at same depth = worse ranking (-15 ELO !!). Test everything...  
+ - Everybody talking about performance being important. On the contrary, I found that above a certain threshold (approx. 30k simulations), there was no benefit to have a faster code. There is exactly 0 ELO difference between my code and itself capped at 50% simulation time.
+ - Everybody talking about fine-tuned evaluation functions
+ - Larger beam width (400 to 600) at same depth = worse ranking (-15 ELO !!). Test everything...  
 
 # End-game: 
 When the end-game is near, the beam-search is disabled and replaced by another [DUCT](http://mlanctot.info/files/papers/cig14-smmctsggp.pdf) search, in which all LEARN actions are disabled.

@@ -43,10 +43,10 @@ With a little bit of math, the individual spell values are extracted:
 A similar approach can be used to estimate "combo values": cards which work better or worse together than estimated from their individual spell values.
 <img src="img/ComboValues.png">
 
-I was really pleased to find that the strongest combos found with this approach were the same that were mentionned in this [strategy guides](https://spicee.mattle.online/lobby/forum/topic/d52WjBx3WX3R27rzy/a-player-s-guide-to-spicee) .
+I was really pleased to find that the strongest combos found with this approach were the same that were mentionned in this [strategy guide](https://spicee.mattle.online/lobby/forum/topic/d52WjBx3WX3R27rzy/a-player-s-guide-to-spicee) .
 
 Without going into more details:
-- These score are expressed in terms of *rupees earned per spell per 22 turns* so that they can easiliy be integrated within a normal evaluation function. 
+- These score are expressed in terms of *rupees earned per spell per 22 turns* so that they can easily be integrated within a normal evaluation function. 
 - While I also evaluated the marginal decrease of spell value everytime a new spell is learnt, I did not use this information.
 
 # Mid-game: 

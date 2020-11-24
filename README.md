@@ -23,7 +23,7 @@ Over the last 5 days of the contest, I was able to find approximately +200 ELO w
 Three possibilities were considered for the draft phase.
 1. Let the mid-game algorithm handle LEARN *(base ELO)*
 2. Systematically LEARN the first spell available *(+30 ELO)*
-3. [DUCT](http://mlanctot.info/files/papers/cig14-smmctsggp.pdf) search with LEARN only *(+40 ELO)*
+3. [DUCT](http://mlanctot.info/files/papers/cig14-smmctsggp.pdf) search with LEARN only *(+60 ELO)*
 
 While surprising to me at first, the improvement from 1) to 2) is expected as [online strategy guides](https://spicee.mattle.online/lobby/forum/topic/d52WjBx3WX3R27rzy/a-player-s-guide-to-spicee) do recommend to spend the early game assembling a good set of spells. Potions and ingredients may be advantageously neglected during this draft phase.
 

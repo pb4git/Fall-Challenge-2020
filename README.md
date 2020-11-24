@@ -33,7 +33,7 @@ This future value was computed the following way:
 5. For each spell, export the average points obtained when the spell was available.
 
 With a little bit of math, the individual spell values are extracted:
-![](img/SpellValues.png "")
+![](img/SpellValues.png "" = 500x)
 
 A similar approach can be used to estimate "combo values": cards which work better or worse together than estimated from there individual spell values.
 ![](img/ComboValues.png "")

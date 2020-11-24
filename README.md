@@ -74,3 +74,4 @@ Surprises:
 # End-game: 
 When the end-game is near, the beam-search is disabled and replaced by another [DUCT](http://mlanctot.info/files/papers/cig14-smmctsggp.pdf) search, in which all LEARN actions are disabled.
 This prevents silly losses where the potion is brewed but the opponent accumulates a lot of tier > 0 ingredients. In fact, it outputs something which approximates (with no theoretical guarantee) the optimal mixed strategy.
+This end-game improvement represents +25 ELO.

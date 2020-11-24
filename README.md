@@ -40,7 +40,7 @@ With a little bit of math, the individual spell values are extracted:
 
 <img src="img/SpellValues.png" width="350">
 
-A similar approach can be used to estimate "combo values": cards which work better or worse together than estimated from there individual spell values.
+A similar approach can be used to estimate "combo values": cards which work better or worse together than estimated from their individual spell values.
 <img src="img/ComboValues.png">
 
 I was really pleased to find that the strongest combos found with this approach were the same that were mentionned in this [strategy guides](https://spicee.mattle.online/lobby/forum/topic/d52WjBx3WX3R27rzy/a-player-s-guide-to-spicee) .

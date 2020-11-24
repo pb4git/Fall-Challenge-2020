@@ -3,17 +3,21 @@ A Post-Mortem by pb4
 
 Winner of the Codingame challenge - November 2020  
 
-Link to the contest rules: (to be updated)
+Link to the contest rules: https://www.codingame.com/multiplayer/bot-programming/fall-challenge-2020
 Link to the leaderboard: https://www.codingame.com/contests/fall-challenge-2020/leaderboard/global
 
 # Introduction
-Straight to the point: as for many other participants, my AI mainly uses Beam Search to find long sequences of moves that score many points.
+As usual, many thanks to the Codingame team for organizing this contest! I loved the rules at first sight, and seeing there were more than 7k participants I was not alone!
+
+Straight to the point: as for many other contestants, my AI mainly uses Beam Search to find long sequences of moves that score many points.
 
 Towards the end of the contest I added special code for two phases of the game where opponent interaction is important *and manageable*: the early-game and the end-game.
 
 In order to keep things short, this post will concentrate on the *little things* that I believe made my AI better than others.
 
 Over the duration of the contest, I made heavy use of a local arena to evaluate candidate improvements. When the information is available, the effect of improvements will be evaluated in terms of ELO score. +10 ELO is equivalent to a change from 50% winrate to 51.4% winrate. +100 ELO is equivalent to 50% -> 64% winrate.
+
+Over the last 5 days of the contest, I was able to find approximately +200 ELO worth of improvements to my code. Some of it in big features, a lot of it in parameter tweaking... There was a relatively good (as far as I can tell...) correlation between local improvements and online improvements.
 
 # Early-game: Draft phase
 Three possibilities were considered for the draft phase.
@@ -33,6 +37,7 @@ This future value was computed the following way:
 5. For each spell, export the average points obtained when the spell was available.
 
 With a little bit of math, the individual spell values are extracted:
+
 <img src="img/SpellValues.png" width="350">
 
 A similar approach can be used to estimate "combo values": cards which work better or worse together than estimated from there individual spell values.
@@ -46,7 +51,7 @@ Without going into more details:
 
 # Mid-game: 
 
-A very standard beam search (width = 400) described by everybody else's Post-Mortem. While the early- and end-game additions made the little difference that pushed me to the top, the beam search alone is sufficient to rank within the top10.
+A very standard beam search (width = 400) described by everybody else in their Post-Mortem. While the early- and end-game additions made the little difference that pushed me to the top, the beam search alone is sufficient to rank within the top10.
 
 I have to admit I am still puzzled why my beam search worked better than all but 10 other contestants, because there is absolutely nothing fancy about it. 
 
@@ -54,17 +59,18 @@ In no particular order:
     - evaluation if the game is ongoing : *tier0 + 2&ast;tier1 + 3&ast;tier2 + 4&ast;tier3 + potionsScore*
     - evaluation if the game is finished : something *very big* if I win, *very small* if I lose, don't care about points
     - potionsScore is the sum of *rupeesEarned &ast; 0.99 ^ turnPotionWasBrewed*
-    - a 10ms search is run for the opponent.
-        - Potions are marked as unvailable in the search for my once I believe the opponent will have taken them (+5 ELO)
+    - spells learned and their castable status is *not* taken into account
+    - a 10ms search is run for the opponent:
+        - Potions are marked as unvailable in the search for my move once I believe the opponent will have taken them (+5 ELO)
         - Small 1-rupee bonus for taking a potion before I believe the opponent will have taken it (+5 ELO)
-        - I tried to simulate his first action in the search for my move, but failed (-10 ELO)
+        - I tried to simulate his first action in the search for my move, but failed (-10 ELO). I still do not understand why that might fail...
+    - and that's it...
         
 Surprises:
-    - everybody talking about performance being important. On the contrary, I found that above a certain threshold (approx. 30k simulations), there was no benefit to have a faster code. There is exactly 0 ELO difference between my code and itself capped at 50% simulation time.
-    - Larger beam width (400 to 600) at same depth = worse ranking (-15 ELO !!). Test everything...
-    
-    
+    - Everybody talking about performance being important. On the contrary, I found that above a certain threshold (approx. 30k simulations), there was no benefit to have a faster code. There is exactly 0 ELO difference between my code and itself capped at 50% simulation time.
+    - Everybody talking about fine-tuned evaluation functions
+    - Larger beam width (400 to 600) at same depth = worse ranking (-15 ELO !!). Test everything...  
 
 # End-game: 
-
-Note : performance & heuristics
+When the end-game is near, the beam-search is disabled and replaced by another [DUCT](http://mlanctot.info/files/papers/cig14-smmctsggp.pdf) search, in which all LEARN actions are disabled.
+This prevents silly losses where the potion is brewed but the opponent accumulates a lot of tier > 0 ingredients. In fact, it outputs something which approximates (with no theoretical guarantee) the optimal mixed strategy.

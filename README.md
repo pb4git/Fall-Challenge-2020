@@ -57,7 +57,7 @@ A very standard beam search (width = 400) described by everybody else in their P
 I have to admit I am still puzzled why my beam search worked better than all but 10 other contestants, because there is absolutely nothing fancy about it. 
 
 In no particular order:
-- evaluation if the game is ongoing : *tier0 + 2&ast;tier1 + 3&ast;tier2 + 4&ast;tier3 + potionsScore*
+- evaluation if the game is ongoing : *tier0 + 2&ast;tier1 + 3&ast;tier2 + 4&ast;tier3 + 1.5&ast;potionsScore*
 - evaluation if the game is finished : something *very big* if I win, *very small* if I lose, don't care about points
 - potionsScore is the sum of *rupeesEarned &ast; 0.99 ^ turnPotionWasBrewed*
 - spells learned and their castable status is *not* taken into account

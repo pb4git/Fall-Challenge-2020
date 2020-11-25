@@ -3,8 +3,9 @@ A Post-Mortem by pb4
 
 Winner of the Codingame challenge - November 2020  
 
-Link to the contest rules: https://www.codingame.com/multiplayer/bot-programming/fall-challenge-2020
-Link to the leaderboard: https://www.codingame.com/contests/fall-challenge-2020/leaderboard/global
+[Link to the contest rules](https://www.codingame.com/multiplayer/bot-programming/fall-challenge-2020)
+
+[Link to the leaderboard](https://www.codingame.com/contests/fall-challenge-2020/leaderboard/global)
 
 # Introduction
 As usual, many thanks to the Codingame team for organizing this contest! I loved the rules at first sight, and seeing there were more than 7k participants I was not alone!
@@ -61,10 +62,10 @@ In no particular order:
 - potionsScore is the sum of *rupeesEarned &ast; 0.99 ^ turnPotionWasBrewed*
 - spells learned and their castable status is *not* taken into account
 - a 10ms search is run for the opponent:
- - Potions are marked as unvailable in the search for my move once I believe the opponent will have taken them (+5 ELO)
- - Small 1-rupee bonus for taking a potion before I believe the opponent will have taken it (+5 ELO)
- - I tried to simulate his first action in the search for my move, but failed (-10 ELO). I still do not understand why that might fail...
- - and that's it...
+  - Potions are marked as unvailable in the search for my move once I believe the opponent will have taken them (+5 ELO)
+  - Small 1-rupee bonus for taking a potion before I believe the opponent will have taken it (+5 ELO)
+  - I tried to simulate his first action in the search for my move, but failed (-10 ELO). I still do not understand why that might fail...
+  - and that's it...
         
 Surprises:
  - Everybody talking about performance being important. On the contrary, I found that above a certain threshold (approx. 30k simulations), there was no benefit to have a faster code. There is exactly 0 ELO difference between my code and itself capped at 50% simulation time.
